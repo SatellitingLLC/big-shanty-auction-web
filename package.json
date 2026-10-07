@@ -12,6 +12,8 @@
   "dependencies": {
     "@grapesjs/react": "^2.0.0",
     "@neondatabase/serverless": "^1.2.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "grapesjs": "^0.23.6",
     "next": "16.3.8",
     "postcss": "^8.5.29",
