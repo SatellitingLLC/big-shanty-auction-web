@@ -1,0 +1,476 @@
+.page {
+  --bg: #0b0a09;
+  --surf: #12100e;
+  --gold: #c9a24d;
+  --copper: #b87333;
+  --text: #ece5d6;
+  --mute: #a09580;
+  --hair: rgba(201, 162, 77, 0.28);
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Jost", system-ui, sans-serif;
+  line-height: 1.8;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page h1,
+.page h2,
+.page h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+}
+
+.page em {
+  color: var(--gold);
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 64px 6vw 70px;
+  background: radial-gradient(ellipse 75% 65% at 50% 25%, #2b1e0c, var(--bg) 75%);
+  text-align: center;
+}
+
+.hero::after {
+  position: absolute;
+  inset: 20px 3vw;
+  border: 1px solid var(--hair);
+  content: "";
+  pointer-events: none;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 900px;
+  margin: 16px auto 0;
+  font-size: clamp(2.6rem, 6.6vw, 5.2rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.heroText {
+  max-width: 570px;
+  margin: 22px auto 0;
+  color: var(--mute);
+}
+
+.contactSection {
+  display: grid;
+  max-width: 1280px;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+  gap: clamp(40px, 7vw, 100px);
+  margin: auto;
+  padding: 100px 6vw;
+}
+
+.detailCard h2,
+.bidderSection h2 {
+  margin: 14px 0 12px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.form {
+  display: grid;
+  gap: 26px;
+  padding: 30px 34px 34px;
+}
+
+.ticket {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--hair);
+  background: var(--surf);
+}
+
+.ticketHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 34px;
+}
+
+.ticketHeader strong,
+.ticketHeader span {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ticketHeader span {
+  color: var(--gold);
+  font-size: 1rem;
+  text-align: right;
+}
+
+.ticketHeader em {
+  font-style: normal;
+}
+
+.perforation {
+  position: relative;
+  border-top: 2px dashed var(--hair);
+}
+
+.perforation::before,
+.perforation::after {
+  position: absolute;
+  top: -13px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--hair);
+  border-radius: 50%;
+  background: var(--bg);
+  content: "";
+}
+
+.perforation::before {
+  left: -13px;
+}
+
+.perforation::after {
+  right: -13px;
+}
+
+.formField {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.fieldLabel {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.formField input:not([type="radio"]),
+.formField textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--hair);
+  border-radius: 0;
+  padding: 8px 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 1.02rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.formField input:not([type="radio"]):focus-visible,
+.formField textarea:focus-visible {
+  border-bottom-color: var(--gold);
+  outline: 0;
+  box-shadow: 0 1px 0 var(--gold);
+}
+
+.formField input:not([type="radio"]):focus-visible {
+  outline: 0;
+}
+
+.formField textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.formField textarea::placeholder {
+  color: var(--mute);
+  opacity: 0.85;
+}
+
+.topicOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  row-gap: 10px;
+}
+
+.topic {
+  position: relative;
+}
+
+.topicOptions input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.topicOptions label {
+  display: block;
+  padding: 9px 14px;
+  border: 1px solid var(--hair);
+  border-radius: 2px;
+  color: var(--text);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.topicOptions label:hover,
+.topicOptions input:focus-visible + label {
+  border-color: var(--gold);
+}
+
+.topicOptions input:checked + label {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.topicOptions input:focus-visible + label {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.formNote,
+.hoursNote {
+  margin: -10px 0 0;
+  color: var(--mute);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.formError {
+  min-height: 1.4em;
+  margin: -18px 0 -18px;
+  color: #d98b5f;
+  font-size: 0.84rem;
+}
+
+.submitButton {
+  display: inline-flex;
+  width: 100%;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border: 1px solid var(--gold);
+  padding: 14px 18px;
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.submitButton svg {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+}
+
+.submitButton:hover {
+  background: transparent;
+  color: var(--gold);
+}
+
+.detailsColumn {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+}
+
+.detailCard {
+  padding: 26px;
+  border: 1px solid var(--hair);
+  background: var(--surf);
+}
+
+.detailCard h2 {
+  margin-bottom: 14px;
+  font-size: 1.8rem;
+}
+
+.detailCard address,
+.hoursNote {
+  color: var(--mute);
+  font-style: normal;
+}
+
+.textLink,
+.detailLink {
+  display: block;
+  width: fit-content;
+  color: var(--gold) !important;
+}
+
+.textLink {
+  margin-top: 10px;
+}
+
+.detailLink {
+  font-size: 1rem;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+
+.hours {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.hours div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  color: var(--mute);
+  font-size: 0.88rem;
+}
+
+.hours dt {
+  color: var(--text);
+}
+
+.hours dd {
+  margin: 0;
+  text-align: right;
+}
+
+.hoursNote {
+  margin: 12px 0 0;
+}
+
+.bidderSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
+  padding: 72px 12vw;
+  border-top: 1px solid var(--hair);
+  background: var(--surf);
+}
+
+.bidderSection h2 {
+  max-width: 480px;
+}
+
+.bidderInfo {
+  color: var(--mute);
+}
+
+.bidderInfo p {
+  margin: 0 0 12px;
+}
+
+.bidLink {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--gold) !important;
+}
+
+.page :is(a, button):focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+@media (max-width: 860px) {
+  .contactSection {
+    grid-template-columns: 1fr;
+  }
+
+  .detailsColumn {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bidderSection {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 54px 6vw 58px;
+  }
+
+  .contactSection {
+    padding-block: 76px;
+  }
+
+  .fieldRow,
+  .detailsColumn,
+  .bidderSection {
+    grid-template-columns: 1fr;
+  }
+
+  .ticketHeader {
+    padding: 20px;
+  }
+
+  .ticketHeader strong {
+    font-size: 1.05rem;
+  }
+
+  .ticketHeader span {
+    font-size: 0.9rem;
+  }
+
+  .form {
+    padding: 26px 20px;
+  }
+
+  .bidderSection {
+    padding: 60px 8vw;
+  }
+
+  .detailCard {
+    padding: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,210 @@
+:global(.landing-page) .header,
+:global(.home-shell) .header,
+:global(.team-page) .header,
+:global(.about-page) .header,
+:global(.contact-page) .header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 6vw;
+  border-bottom: 1px solid rgba(201, 162, 77, 0.28);
+  background: rgba(11, 10, 9, 0.93);
+  backdrop-filter: blur(8px);
+}
+
+:global(.landing-page) .brand,
+:global(.home-shell) .brand,
+:global(.team-page) .brand,
+:global(.about-page) .brand,
+:global(.contact-page) .brand {
+  flex: 0 0 auto;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+:global(.landing-page) .brand span,
+:global(.home-shell) .brand span,
+:global(.team-page) .brand span,
+:global(.about-page) .brand span,
+:global(.contact-page) .brand span {
+  display: block;
+  color: #c9a24d;
+  font-family: "Jost", sans-serif;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.55em;
+}
+
+:global(.landing-page) .navigation,
+:global(.home-shell) .navigation,
+:global(.team-page) .navigation,
+:global(.about-page) .navigation,
+:global(.contact-page) .navigation {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+:global(.landing-page) .navigation a:hover,
+:global(.home-shell) .navigation a:hover,
+:global(.team-page) .navigation a:hover,
+:global(.about-page) .navigation a:hover,
+:global(.contact-page) .navigation a:hover,
+:global(.landing-page) .navigation a[aria-current="page"],
+:global(.home-shell) .navigation a[aria-current="page"],
+:global(.team-page) .navigation a[aria-current="page"],
+:global(.about-page) .navigation a[aria-current="page"],
+:global(.contact-page) .navigation a[aria-current="page"] {
+  color: #c9a24d;
+}
+
+:global(.landing-page) .phone,
+:global(.home-shell) .phone,
+:global(.team-page) .phone,
+:global(.about-page) .phone,
+:global(.contact-page) .phone {
+  flex: 0 0 auto;
+  color: #c9a24d;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+}
+
+:global(.landing-page) .menuToggle,
+:global(.home-shell) .menuToggle,
+:global(.team-page) .menuToggle,
+:global(.about-page) .menuToggle,
+:global(.contact-page) .menuToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 11px;
+  border: 1px solid rgba(201, 162, 77, 0.28);
+  background: none;
+  cursor: pointer;
+}
+
+:global(.landing-page) .menuToggle i,
+:global(.home-shell) .menuToggle i,
+:global(.team-page) .menuToggle i,
+:global(.about-page) .menuToggle i,
+:global(.contact-page) .menuToggle i {
+  display: block;
+  height: 1px;
+  background: #c9a24d;
+  transition: 0.3s;
+}
+
+:global(.landing-page) .menuToggle[aria-expanded="true"] i:nth-child(1),
+:global(.home-shell) .menuToggle[aria-expanded="true"] i:nth-child(1),
+:global(.team-page) .menuToggle[aria-expanded="true"] i:nth-child(1),
+:global(.about-page) .menuToggle[aria-expanded="true"] i:nth-child(1),
+:global(.contact-page) .menuToggle[aria-expanded="true"] i:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+:global(.landing-page) .menuToggle[aria-expanded="true"] i:nth-child(2),
+:global(.home-shell) .menuToggle[aria-expanded="true"] i:nth-child(2),
+:global(.team-page) .menuToggle[aria-expanded="true"] i:nth-child(2),
+:global(.about-page) .menuToggle[aria-expanded="true"] i:nth-child(2),
+:global(.contact-page) .menuToggle[aria-expanded="true"] i:nth-child(2) {
+  opacity: 0;
+}
+
+:global(.landing-page) .menuToggle[aria-expanded="true"] i:nth-child(3),
+:global(.home-shell) .menuToggle[aria-expanded="true"] i:nth-child(3),
+:global(.team-page) .menuToggle[aria-expanded="true"] i:nth-child(3),
+:global(.about-page) .menuToggle[aria-expanded="true"] i:nth-child(3),
+:global(.contact-page) .menuToggle[aria-expanded="true"] i:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+:global(.landing-page) .open,
+:global(.home-shell) .open,
+:global(.team-page) .open,
+:global(.about-page) .open,
+:global(.contact-page) .open {
+  display: flex;
+  animation: drop 0.3s ease-out;
+}
+
+@media (max-width: 860px) {
+  :global(.landing-page) .menuToggle,
+  :global(.home-shell) .menuToggle,
+  :global(.team-page) .menuToggle,
+  :global(.about-page) .menuToggle,
+  :global(.contact-page) .menuToggle {
+    display: flex;
+  }
+
+  :global(.landing-page) .navigation,
+  :global(.home-shell) .navigation,
+  :global(.team-page) .navigation,
+  :global(.about-page) .navigation,
+  :global(.contact-page) .navigation {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 6vw 22px;
+    border-bottom: 1px solid #c9a24d;
+    background: rgba(11, 10, 9, 0.98);
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.6);
+  }
+
+  :global(.landing-page) .navigation.open,
+  :global(.home-shell) .navigation.open,
+  :global(.team-page) .navigation.open,
+  :global(.about-page) .navigation.open,
+  :global(.contact-page) .navigation.open {
+    display: flex;
+  }
+
+  :global(.landing-page) .navigation a,
+  :global(.home-shell) .navigation a,
+  :global(.team-page) .navigation a,
+  :global(.about-page) .navigation a,
+  :global(.contact-page) .navigation a {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(201, 162, 77, 0.28);
+    font-size: 0.85rem;
+  }
+
+  :global(.landing-page) .navigation .phone,
+  :global(.home-shell) .navigation .phone,
+  :global(.team-page) .navigation .phone,
+  :global(.about-page) .navigation .phone,
+  :global(.contact-page) .navigation .phone {
+    padding: 20px 0 0;
+    border: 0;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(.landing-page) .menuToggle i,
+  :global(.home-shell) .menuToggle i,
+  :global(.team-page) .menuToggle i,
+  :global(.about-page) .menuToggle i,
+  :global(.contact-page) .menuToggle i {
+    transition: none;
+  }
+}

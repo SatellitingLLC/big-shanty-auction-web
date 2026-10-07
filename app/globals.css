@@ -1,26 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0b0a09;
+  --foreground: #ece5d6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Jost", Arial, Helvetica, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at top, rgba(201, 162, 77, 0.18), rgba(11, 10, 9, 1) 42%);
+  padding: 24px;
+}
+
+.login-panel {
+  width: min(480px, 100%);
+  background: rgba(18, 16, 14, 0.96);
+  border: 1px solid rgba(201, 162, 77, 0.28);
+  padding: 32px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+}
+
+.login-header h1 {
+  margin: 12px 0 24px;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #c9a24d;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #ece5d6;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.login-panel input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(201, 162, 77, 0.3);
+  color: #ece5d6;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+
+.login-panel input:focus {
+  outline: 2px solid rgba(201, 162, 77, 0.6);
+  outline-offset: 2px;
+}
+
+.error-text {
+  margin: 0 0 16px;
+  color: #f7d5d5;
+  font-size: 0.95rem;
+}
+
+.login-button,
+.save-button {
+  border: 1px solid #c9a24d;
+  background: #c9a24d;
+  color: #0b0a09;
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.login-button:hover,
+.save-button:hover {
+  background: transparent;
+  color: #c9a24d;
+}
+
+.logout-button {
+  border: 0;
+  background: transparent;
+  color: #c9a24d;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.publish-button {
+  background: transparent;
+  color: #c9a24d;
+}
+
+.publish-button:hover {
+  background: #c9a24d;
+  color: #0b0a09;
+}
+
+.login-button:disabled,
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.editor-layout {
+  min-height: 100vh;
+  background: #0b0a09;
+}
+
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 24px;
+  background: rgba(11, 10, 9, 0.96);
+  border-bottom: 1px solid rgba(201, 162, 77, 0.3);
+}
+
+.toolbar-kicker {
+  margin: 0 0 4px;
+  color: #c9a24d;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.editor-toolbar h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 2vw, 2.6rem);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(201, 162, 77, 0.35);
+  color: #d9d0bf;
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.admin-shell {
+  min-height: 100vh;
+  background: #0b0a09;
+  padding: 32px 24px;
+}
+
+.admin-shell nav {
+  max-width: 1100px;
+  margin: 0 auto 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-link {
+  color: #c9a24d;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.admin-panel {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px;
+  background: rgba(18, 16, 14, 0.9);
+  border: 1px solid rgba(201, 162, 77, 0.25);
+}
+
+.admin-panel h2 {
+  margin: 0 0 10px;
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+}
+
+.admin-panel p {
+  margin: 0 0 28px;
+  color: #a09580;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.gjs-cv-canvas {
+  background: white !important;
 }
