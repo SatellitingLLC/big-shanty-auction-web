@@ -3,15 +3,10 @@ import sanitizeHtml from "sanitize-html";
 import { LandingPageContent } from "@/components/site/LandingPageContent";
 import { scopeLandingPageCss } from "@/lib/page-css";
 import type { PageDocument } from "@/lib/page-seed";
-import styles from "@/components/site/SiteHeader.module.css";
 
 type SanitizeOptions = NonNullable<Parameters<typeof sanitizeHtml>[1]> & {
   exclusiveFilter: (frame: { tag: string }) => boolean;
 };
-
-function withClass(existing: string | undefined, className: string) {
-  return [existing, className].filter(Boolean).join(" ");
-}
 
 function sanitizeMarkup(markup: string) {
   const options: SanitizeOptions = {
@@ -109,12 +104,6 @@ function sanitizeMarkup(markup: string) {
         tagName,
         attribs: {
           ...attribs,
-          ...(attribs.class?.split(/\s+/).includes("brand")
-            ? { class: withClass(attribs.class, styles.brand) }
-            : {}),
-          ...(attribs.class?.split(/\s+/).includes("tel")
-            ? { class: withClass(attribs.class, styles.phone) }
-            : {}),
           rel: attribs.rel ?? "noopener noreferrer",
         },
       }),

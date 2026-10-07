@@ -401,7 +401,7 @@
 }
 
 .bidLink {
-  display: inline-block;
+  display: block;
   margin-top: 8px;
   color: var(--gold) !important;
 }

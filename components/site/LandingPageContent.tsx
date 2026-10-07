@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-import styles from "@/components/site/SiteHeader.module.css";
 import { submitContactForm } from "@/lib/contact-form";
 
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
@@ -276,61 +275,9 @@ export function LandingPageContent({ html }: { html: string }) {
       };
     }
 
-    const button = container.querySelector<HTMLButtonElement>("#burger");
-    const menu = container.querySelector<HTMLElement>("#menu");
-    if (!button || !menu) {
-      return () => {
-        cleanupCarousel();
-        cleanupForms.forEach((cleanup) => cleanup());
-      };
-    }
-
-    const setMenuOpen = (open: boolean) => {
-      menu.classList.toggle(styles.open, open);
-      button.setAttribute("aria-expanded", String(open));
-      button.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    };
-    const onMenuClick = (event: MouseEvent) => {
-      if (event.target instanceof Element && event.target.closest("#menu a")) {
-        setMenuOpen(false);
-      }
-    };
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-      }
-    };
-    const onPointerDown = (event: PointerEvent) => {
-      if (
-        event.target instanceof Node &&
-        !button.contains(event.target) &&
-        !menu.contains(event.target)
-      ) {
-        setMenuOpen(false);
-      }
-    };
-    const onResize = () => {
-      if (window.innerWidth > 860) {
-        setMenuOpen(false);
-      }
-    };
-    const onButtonClick = () => setMenuOpen(!menu.classList.contains(styles.open));
-
-    button.addEventListener("click", onButtonClick);
-    menu.addEventListener("click", onMenuClick);
-    button.setAttribute("aria-label", "Open menu");
-    window.addEventListener("resize", onResize);
-    document.addEventListener("keydown", onKeyDown);
-    document.addEventListener("pointerdown", onPointerDown);
-
     return () => {
       cleanupCarousel();
       cleanupForms.forEach((cleanup) => cleanup());
-      button.removeEventListener("click", onButtonClick);
-      menu.removeEventListener("click", onMenuClick);
-      window.removeEventListener("resize", onResize);
-      document.removeEventListener("keydown", onKeyDown);
-      document.removeEventListener("pointerdown", onPointerDown);
     };
   }, []);
 

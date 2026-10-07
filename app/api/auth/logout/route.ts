@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Invalid request origin." }, { status: 403 });
   }
 
-  const response = NextResponse.redirect(new URL("/login", request.url));
+  const response = NextResponse.redirect(new URL("/login", request.url), { status: 303 });
   response.cookies.set(SESSION_COOKIE_NAME, "", { ...sessionCookieOptions(), maxAge: 0 });
   return response;
 }
