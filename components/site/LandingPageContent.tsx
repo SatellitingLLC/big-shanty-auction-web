@@ -7,15 +7,6 @@ import { submitContactForm } from "@/lib/contact-form";
 
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 const CLOCK_LABELS = ["XII", "I", "II", "III", "IIII", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
-const TESTIMONIALS = [
-  [
-    "I absolutely adore everyone who works here. The place is full of very fun and interesting finds. They also hold many small business items such as local honey, eggs, aromatherapy jewelry, therapy dough, and toiletry items such as lotions and bath bombs!",
-    "Chloe Sterle",
-  ],
-  ["Sample review: replace with a real client quote about the online bidding experience.", "Client Name"],
-  ["Sample review: replace with a real consignor quote about how their estate was handled.", "Client Name"],
-  ["Sample review: replace with a real quote about the shop, the staff, or a favorite find.", "Client Name"],
-];
 const TESTIMONIAL_DURATION = 7000;
 
 function drawClock(svg: SVGSVGElement) {
@@ -93,14 +84,12 @@ export function LandingPageContent({ html }: { html: string }) {
     });
 
     const carousel = container.querySelector<HTMLElement>(".car");
-    const quote = carousel?.querySelector<HTMLElement>(".q");
-    const quoteText = quote?.querySelector("p");
-    const quoteAuthor = quote?.querySelector("cite");
-    const initialQuoteText = quoteText?.textContent ?? "";
-    const initialQuoteAuthor = quoteAuthor?.textContent ?? "";
+    const slides = carousel
+      ? [...carousel.querySelectorAll<HTMLElement>(":scope > .q")]
+      : [];
     let cleanupCarousel = () => {};
 
-    if (carousel && quote && quoteText && quoteAuthor) {
+    if (carousel && slides.length > 1) {
       let index = 0;
       let timer: ReturnType<typeof setTimeout> | undefined;
       let busy = false;
@@ -112,6 +101,10 @@ export function LandingPageContent({ html }: { html: string }) {
       const previous = document.createElement("button");
       const next = document.createElement("button");
       const dots = document.createElement("div");
+      const originalAttributes = ["role", "aria-live", "aria-label", "aria-roledescription"].map((name) => [
+        name,
+        carousel.getAttribute(name),
+      ] as const);
 
       row.className = "row";
       previous.className = next.className = "arr";
@@ -128,13 +121,17 @@ export function LandingPageContent({ html }: { html: string }) {
       carousel.setAttribute("role", "region");
       carousel.setAttribute("aria-label", carousel.getAttribute("aria-label") ?? "Client testimonials");
       carousel.setAttribute("aria-roledescription", "carousel");
-      quote.setAttribute("aria-live", "polite");
-      quote.setAttribute("aria-roledescription", "slide");
-      quote.replaceWith(row);
-      row.append(previous, quote, next);
+      carousel.setAttribute("aria-live", "polite");
+      slides[0].before(row);
+      row.append(previous, ...slides, next);
+      slides.forEach((slide, slideIndex) => {
+        slide.hidden = slideIndex !== index;
+        slide.setAttribute("aria-roledescription", "slide");
+        slide.setAttribute("aria-label", `${slideIndex + 1} of ${slides.length}`);
+      });
       carousel.append(dots);
 
-      const dotButtons = TESTIMONIALS.map((_, dotIndex) => {
+      const dotButtons = slides.map((_, dotIndex) => {
         const dot = document.createElement("button");
         dot.type = "button";
         dot.setAttribute("aria-label", `Show testimonial ${dotIndex + 1}`);
@@ -143,8 +140,9 @@ export function LandingPageContent({ html }: { html: string }) {
       });
 
       const fill = () => {
-        quoteText.textContent = TESTIMONIALS[index][0];
-        quoteAuthor.textContent = TESTIMONIALS[index][1];
+        slides.forEach((slide, slideIndex) => {
+          slide.hidden = slideIndex !== index;
+        });
         dotButtons.forEach((dot, dotIndex) => {
           dot.classList.toggle("on", dotIndex === index);
           if (dotIndex === index) {
@@ -160,12 +158,15 @@ export function LandingPageContent({ html }: { html: string }) {
         clearTimeout(timer);
         if (reducedMotion.matches) return;
 
-        timer = setTimeout(() => show((index + 1) % TESTIMONIALS.length, 1), TESTIMONIAL_DURATION);
+        timer = setTimeout(() => show((index + 1) % slides.length, 1), TESTIMONIAL_DURATION);
       };
 
       const show = (nextIndex: number, direction: number) => {
         if (!active || busy || nextIndex === index) return;
+        clearTimeout(timer);
         busy = true;
+        const currentSlide = slides[index];
+        const nextSlide = slides[nextIndex];
 
         if (reducedMotion.matches) {
           index = nextIndex;
@@ -175,7 +176,7 @@ export function LandingPageContent({ html }: { html: string }) {
           return;
         }
 
-        quote.animate(
+        currentSlide.animate(
           [
             { opacity: 1, transform: "translateX(0)", filter: "blur(0)" },
             { opacity: 0, transform: `translateX(${-40 * direction}px)`, filter: "blur(6px)" },
@@ -204,7 +205,7 @@ export function LandingPageContent({ html }: { html: string }) {
             ],
             { duration: 900, easing: "ease-out" },
           );
-          return quote.animate(
+          return nextSlide.animate(
             [
               { opacity: 0, transform: "translateY(-46px) scale(1.04)", filter: "blur(8px)" },
               { opacity: 1, transform: "translateY(6px) scale(.995)", filter: "blur(0)", offset: 0.62 },
@@ -214,7 +215,7 @@ export function LandingPageContent({ html }: { html: string }) {
           ).finished;
         }).then(() => {
           if (!active) return;
-          quote.getAnimations().forEach((animation) => animation.cancel());
+          slides.forEach((slide) => slide.getAnimations().forEach((animation) => animation.cancel()));
           busy = false;
           startTimer();
         }).catch((error: unknown) => {
@@ -227,8 +228,8 @@ export function LandingPageContent({ html }: { html: string }) {
         });
       };
 
-      const onPrevious = () => show((index - 1 + TESTIMONIALS.length) % TESTIMONIALS.length, -1);
-      const onNext = () => show((index + 1) % TESTIMONIALS.length, 1);
+      const onPrevious = () => show((index - 1 + slides.length) % slides.length, -1);
+      const onNext = () => show((index + 1) % slides.length, 1);
       const onMouseEnter = () => {
         clearTimeout(timer);
       };
@@ -257,12 +258,20 @@ export function LandingPageContent({ html }: { html: string }) {
         dots.removeEventListener("click", onDotClick);
         carousel.removeEventListener("mouseenter", onMouseEnter);
         carousel.removeEventListener("mouseleave", onMouseLeave);
-        [quote, gavel, ring].forEach((element) => {
+        [...slides, gavel, ring].forEach((element) => {
           element?.getAnimations().forEach((animation) => animation.cancel());
         });
-        quoteText.textContent = initialQuoteText;
-        quoteAuthor.textContent = initialQuoteAuthor;
-        row.replaceWith(quote);
+        slides.forEach((slide) => {
+          slide.hidden = false;
+          slide.removeAttribute("aria-roledescription");
+          slide.removeAttribute("aria-label");
+        });
+        originalAttributes.forEach(([name, value]) => {
+          if (value === null) carousel.removeAttribute(name);
+          else carousel.setAttribute(name, value);
+        });
+        row.before(...slides);
+        row.remove();
         dots.remove();
       };
     }
