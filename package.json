@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:migrate": "node --env-file=.env.local scripts/migrate-page-store.mjs",
-    "db:clean-navigation": "node --env-file=.env.local scripts/clean-page-navigation.mjs"
+    "db:migrate": "node --env-file=.env.local scripts/migrate-page-store.mjs"
   },
   "dependencies": {
     "@grapesjs/react": "^2.0.0",

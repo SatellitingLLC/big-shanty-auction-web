@@ -9,6 +9,7 @@
   border-bottom: 1px solid rgba(201, 162, 77, 0.28);
   background: rgba(11, 10, 9, 0.93);
   backdrop-filter: blur(8px);
+  font-family: "Jost", Arial, Helvetica, sans-serif;
   line-height: 1;
 }
 
@@ -45,7 +46,7 @@
   color: #c9a24d;
 }
 
-.phone {
+.navigation .phone {
   flex: 0 0 auto;
   color: #c9a24d;
   font-family: "Cormorant Garamond", serif;
