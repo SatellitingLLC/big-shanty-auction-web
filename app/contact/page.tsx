@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { SocialLinks } from "@/components/site/SocialLinks";
 import { LandingPageRenderer } from "@/components/site/LandingPageRenderer";
 import { getPublishedPage } from "@/lib/page-store";
 import { connection } from "next/server";
@@ -105,6 +106,15 @@ export default async function ContactPage() {
                 <div><dt>Sunday</dt><dd>Noon–6 p.m.</dd></div>
               </dl>
               <p className={styles.hoursNote}>Hours can change; please call ahead to confirm.</p>
+            </section>
+
+            <section className={`${styles.detailCard} ${styles.socialCard}`}>
+              <p className={styles.eyebrow}>Follow Along</p>
+              <h2>Find us <em>around town.</em></h2>
+              <p className={styles.socialText}>
+                Follow the latest finds, auction updates, and the latest Big Shanty updates.
+              </p>
+              <SocialLinks />
             </section>
           </aside>
         </section>

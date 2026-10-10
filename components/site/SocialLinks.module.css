@@ -1,0 +1,41 @@
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.links a {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(201, 162, 77, 0.35);
+  border-radius: 2px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 150ms ease, color 150ms ease, background 150ms ease;
+}
+
+.links a:hover {
+  border-color: #c9a24d;
+  background: rgba(201, 162, 77, 0.08);
+  color: #c9a24d;
+}
+
+.links a:focus-visible {
+  outline: 2px solid #c9a24d;
+  outline-offset: 3px;
+}
+
+.links svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .links a {
+    transition: none;
+  }
+}

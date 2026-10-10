@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { SocialLinks } from "./SocialLinks";
 import styles from "./SiteFooter.module.css";
 
 export function SiteFooter() {
@@ -36,6 +37,7 @@ export function SiteFooter() {
           <p>2932 Canton Rd<br />Marietta, GA 30066</p>
           <a href="mailto:dwaynesantiques@gmail.com">dwaynesantiques@gmail.com</a>
           <a href="tel:7702312019">(770) 231-2019</a>
+          <SocialLinks />
         </div>
       </div>
       <div className={styles.finePrint}>
