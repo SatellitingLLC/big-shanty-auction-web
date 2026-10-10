@@ -137,11 +137,11 @@ export default async function ContactPage() {
             </a>
             <a
               className={styles.bidLink}
-              href="https://www.auctionzip.com/ga-auctioneers/371513.html"
+              href="https://www.liveauctioneers.com/auctioneer/5785/bramlett-and-co/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Browse auctions on AuctionZip <span aria-hidden="true">↗</span>
+              Browse auctions on LiveAuctioneers <span aria-hidden="true">↗</span>
             </a>
           </div>
         </section>
