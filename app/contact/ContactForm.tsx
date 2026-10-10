@@ -63,8 +63,9 @@ export function ContactForm() {
       </div>
       <p className={styles.formError} role="alert" aria-live="polite" />
       <p className={styles.formNote}>
-        Your email app will open with a draft. Press Send there to send your message.
+        We read every message and reply by email or phone.
       </p>
+      <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: "none" }} />
       <button className={styles.submitButton} type="submit">
         <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true">
           <g transform="translate(64 0) scale(-1 1)">
