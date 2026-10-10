@@ -9,13 +9,13 @@
   border-bottom: 1px solid rgba(201, 162, 77, 0.28);
   background: rgba(11, 10, 9, 0.93);
   backdrop-filter: blur(8px);
-  font-family: "Jost", Arial, Helvetica, sans-serif;
+  font-family: var(--font-jost, "Jost"), Arial, Helvetica, sans-serif;
   line-height: 1;
 }
 
 .brand {
   flex: 0 0 auto;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-cormorant, "Cormorant Garamond"), serif;
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -26,7 +26,7 @@
 .brand span {
   display: block;
   color: #c9a24d;
-  font-family: "Jost", sans-serif;
+  font-family: var(--font-jost, "Jost"), sans-serif;
   font-size: 0.58rem;
   font-weight: 500;
   letter-spacing: 0.55em;
@@ -49,7 +49,7 @@
 .navigation .phone {
   flex: 0 0 auto;
   color: #c9a24d;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-cormorant, "Cormorant Garamond"), serif;
   font-size: 1.35rem;
   letter-spacing: 0.06em;
 }

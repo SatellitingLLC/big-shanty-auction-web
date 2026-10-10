@@ -9,7 +9,7 @@
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
-  font-family: "Jost", system-ui, sans-serif;
+  font-family: var(--font-jost, "Jost"), system-ui, sans-serif;
   line-height: 1.8;
 }
 
@@ -27,7 +27,7 @@
 .page h1,
 .page h2,
 .page h3 {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-cormorant, "Cormorant Garamond"), Georgia, serif;
   font-weight: 500;
 }
 
@@ -120,7 +120,7 @@
 
 .ticketHeader strong,
 .ticketHeader span {
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-cormorant, "Cormorant Garamond"), Georgia, serif;
   font-size: 1.3rem;
   font-weight: 600;
   letter-spacing: 0.12em;

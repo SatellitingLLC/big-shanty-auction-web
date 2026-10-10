@@ -6,7 +6,7 @@
   padding: 70px 6vw 36px;
   background: #070606;
   color: var(--text);
-  font-family: "Jost", system-ui, sans-serif;
+  font-family: var(--font-jost, "Jost"), system-ui, sans-serif;
   line-height: 1.5;
 }
 
@@ -31,7 +31,7 @@
 .footer .grid h2 {
   margin: 0 0 14px;
   color: var(--gold);
-  font-family: "Jost", Arial, Helvetica, sans-serif;
+  font-family: var(--font-jost, "Jost"), Arial, Helvetica, sans-serif;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.28em;

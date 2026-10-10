@@ -40,7 +40,7 @@ function drawClock(svg: SVGSVGElement) {
     const text = addShape("text", {
       x: String(Math.sin(angle) * 76),
       y: String(-Math.cos(angle) * 76 + 3.5),
-      "font-family": "Cormorant Garamond, serif",
+      "font-family": 'var(--font-cormorant, "Cormorant Garamond"), serif',
       "font-size": "11",
       "text-anchor": "middle",
       fill: "currentColor",
