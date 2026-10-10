@@ -1,14 +1,26 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function LoginForm() {
   const router = useRouter();
+  const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1024px) and (pointer: fine)");
+    const checkDevice = () => {
+      setIsDesktop(desktop.matches);
+      if (!desktop.matches) router.replace("/");
+    };
+    checkDevice();
+    desktop.addEventListener("change", checkDevice);
+    return () => desktop.removeEventListener("change", checkDevice);
+  }, [router]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -37,6 +49,8 @@ export function LoginForm() {
       setIsSubmitting(false);
     }
   }
+
+  if (!isDesktop) return null;
 
   return (
     <form className="login-panel" onSubmit={handleSubmit}>
