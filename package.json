@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:migrate": "node --env-file=.env.local scripts/migrate-page-store.mjs"
+    "db:pull": "node --env-file=.env.local scripts/pull-pages.mjs",
+    "db:push": "node --env-file=.env.local scripts/push-pages.mjs"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.3.1",

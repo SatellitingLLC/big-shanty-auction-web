@@ -65,3 +65,17 @@ pnpm lint    # Check for lint issues
 pnpm build   # Build for production
 pnpm start   # Serve a production build
 ```
+
+## Syncing page content with Neon
+
+The public site renders the **published** snapshots stored in the `site_pages` table in Neon — editing `lib/page-seed.json` alone won't change the live page. Edit the database copy instead:
+
+```powershell
+pnpm db:pull                          # Download DB pages to .data/pages.json (backs up the old file to .data/pages.json.bak)
+# ... edit .data/pages.json locally ...
+pnpm db:push --slug=home --dry-run    # Validate without writing
+pnpm db:push --slug=home              # Overwrite one page in the DB (asks for YES first)
+pnpm db:push                          # Overwrite every page in .data/pages.json (asks for YES first)
+```
+
+`db:push` is a force-push: it lists the pages, reminds you to pull first, and only proceeds when you type `YES` (pass `--yes` to skip the prompt in automation). Pull first if anyone may have edited via `/admin/editor`.
