@@ -78,8 +78,13 @@
 }
 
 @media (max-width: 640px) {
+  .footer {
+    padding: 56px 6vw 32px;
+  }
+
   .grid {
-    gap: 32px 20px;
+    grid-template-columns: 1fr;
+    gap: 36px;
   }
 
   .finePrint {

@@ -23,8 +23,9 @@ const leaders = [
 
 const crew = [
   { initials: "DW", name: "Dana Worley", role: "Concession Vendor" },
-  { initials: "DA", name: 'Dean "Elvis" Ayers', role: "Auction Logistics Specialist" },
+  { initials: "AT", name: 'Abbigale "Tattletail"', role: "Auction Coordinator" },
   { initials: "SH", name: 'Scott "Cash" Houston', role: "Antiquities Dealer" },
+  { initials: "DA", name: 'Dean "Elvis" Ayers', role: "Auction Logistics Specialist" },
   { initials: "S", name: "Stephanie", role: "Bidder Services Coordinator" },
   { initials: "BK", name: 'Breeze "The Knees"', role: "Furniture Moving Specialist" },
 ];
